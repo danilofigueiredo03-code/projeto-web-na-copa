@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção Portuguesa • Copa do Mundo 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --green: #00a650;
+            --red: #da291c;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00a650;
+        }
+        
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.65);
+        }
+
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 25px 25px 0 -10px rgb(0 166 80);
+        }
+        
+        .modal {
+            animation: modalPop 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-neutral-950 text-white">
+    <!-- NAVBAR - IGUAL EM TODAS AS PÁGINAS -->
+    <nav class="bg-neutral-950 border-b border-white/10 backdrop-blur-lg fixed w-full z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <div class="">
+                   
+                </div>
+                <div>
+                    <h1 class="title-font text-3xl font-bold tracking-tighter">SELEÇÃO PORTUGUESA</h1>
+                    <p class="text-xs text-white/60 -mt-1 tracking-[2px]">COPA DO MUNDO 2026</p>
+                </div>
+            </div>
+
+            <!-- Botões de navegação -->
+            <div class="flex items-center gap-x-2 bg-white/5 px-2 py-2 rounded-3xl border border-white/10">
+                <button onclick="navigateTo('home')" 
+                        class="nav-btn flex items-center gap-x-2 px-8 py-3 rounded-3xl text-sm font-semibold hover:bg-white/10 active:bg-white/10" id="btn-home">
+                    <i class="fa-solid fa-house"></i>
+                    <span>INÍCIO</span>
+                </button>
+                <button onclick="navigateTo('cultura')" 
+                        class="nav-btn flex items-center gap-x-2 px-8 py-3 rounded-3xl text-sm font-semibold hover:bg-white/10 active:bg-white/10" id="btn-cultura">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>CULTURA</span>
+                </button>
+                <button onclick="navigateTo('sede')" 
+                        class="nav-btn flex items-center gap-x-2 px-8 py-3 rounded-3xl text-sm font-semibold hover:bg-white/10 active:bg-white/10" id="btn-sede">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <span>SEDE</span>
+                </button>
+                <button onclick="navigateTo('participacoes')" 
+                        class="nav-btn flex items-center gap-x-2 px-8 py-3 rounded-3xl text-sm font-semibold hover:bg-white/10 active:bg-white/10" id="btn-participacoes">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>PARTICIPAÇÕES</span>
+                </button>
+            </div>
+
+            <!-- Informações extras -->
+            <div class="flex items-center gap-x-6 text-sm">
+                <div class="flex items-center gap-x-2 bg-emerald-500/10 text-emerald-400 px-4 h-9 rounded-2xl text-xs font-medium">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    AO VIVO • 2026
+                </div>
+                <a href="#" onclick="alert('Compartilhando no X... 🇵🇹 #VamosPortugal')" 
+                   class="flex items-center gap-x-2 hover:text-[#00a650]">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span class="text-xs">COMPARTILHAR</span>
+                </a>
+                <div class="text-white/70 text-xs flex items-center">
+                    <i class="fa-solid fa-futbol mr-1"></i>
+                    9ª PARTICIPAÇÃO
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="pt-20">
+
+        <!-- ====================== PÁGINA 1: HOME ====================== -->
+        <div id="page-home" class="page active">
+
+            <!-- HERO COM VÍDEO DE FUNDO -->
+            <div class="relative h-screen flex items-center justify-center overflow-hidden">
+                
+                <!-- Vídeo de fundo (substitua por um vídeo real da Seleção - highlights 2026 ou 2022) -->
+                <video class="hero-video" autoplay loop muted playsinline poster="https://picsum.photos/id/1015/1920/1080">
+                    <source src="file:///C:/Users/NIT0314762/Downloads/World%20Cup%202026%20-%20Official%20Intro.mp4" type="video/mp4">
+                    <!-- Substitua o src acima por um link direto de vídeo MP4 de alta qualidade da Seleção Portuguesa (ex: highlights da Copa) -->
+                    Seu navegador não suporta vídeo.
+                </video>
+
+                <!-- Overlay gradiente -->
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90"></div>
+                
+                <!-- Conteúdo central -->
+                <div class="relative z-10 max-w-screen-2xl mx-auto px-8 text-center">
+                    <div class="inline-flex items-center gap-x-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl mb-6 border border-white/20">
+                        <span class="text-4xl"></span>
+                        <span class="text-xl font-semibold tracking-widest">VAMOS PORTUGAL!</span>
+                    </div>
+                    
+                    <h1 class="title-font text-7xl md:text-8xl font-bold leading-none mb-6 tracking-tighter">
+                        SELEÇÃO PORTUGUESA<br>NA COPA DO MUNDO 2026
+                    </h1>
+                    
+                    <p class="max-w-2xl mx-auto text-2xl text-white/80 mb-12">
+                        A nação unida. O sonho vivo. A bola rola na Copa e o mundo assiste.
+                    </p>
+                    
+                    <div class="flex items-center justify-center gap-x-6">
+                        <button onclick="navigateTo('participacoes')" 
+                                class="bg-[#da291c] hover:bg-red-700 text-white px-10 py-5 rounded-3xl text-xl font-semibold flex items-center gap-x-3 shadow-2xl shadow-red-500/30">
+                            <i class="fa-solid fa-trophy"></i>
+                            VER HISTÓRICO
+                        </button>
+                        <button onclick="navigateTo('sede')" 
+                                class="border-2 border-white/80 hover:border-white text-white px-10 py-5 rounded-3xl text-xl font-semibold flex items-center gap-x-3">
+                            
+                            NOSSA SEDE EM MIAMI
+                        </button>
+                    </div>
+                    
+                    <div class="absolute bottom-12 left-1/2 flex flex-col items-center">
+                        <p class="text-xs tracking-widest mb-2">ROLE PARA CONHECER A SELEÇÃO</p>
+                        <i class="fa-solid fa-chevron-down animate-bounce text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTRODUÇÃO BREVE DE TODOS OS ASSUNTOS -->
+            <div class="max-w-screen-2xl mx-auto px-8 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div onclick="navigateTo('cultura')" class="bg-white/5 hover:bg-white/10 p-8 rounded-3xl cursor-pointer card-hover">
+                        <i class="fa-solid fa-landmark text-4xl mb-6 text-[#00a650]"></i>
+                        <h3 class="text-2xl font-semibold mb-3">Cultura Portuguesa</h3>
+                        <p class="text-white/70">Da paixão nas arquibancadas ao fado, pastel de nata e o orgulho de ser português. Conheça a alma da nação que vive o futebol como ninguém.</p>
+                    </div>
+                    <div onclick="navigateTo('sede')" class="bg-white/5 hover:bg-white/10 p-8 rounded-3xl cursor-pointer card-hover">
+                        <i class="fa-solid fa-map-marker-alt text-4xl mb-6 text-[#da291c]"></i>
+                        <h3 class="text-2xl font-semibold mb-3">Sede em Miami</h3>
+                        <p class="text-white/70">Base oficial confirmada em Miami, Flórida. Praias, sol, cultura latina e o Hard Rock Stadium como palco dos nossos sonhos.</p>
+                    </div>
+                    <div onclick="navigateTo('participacoes')" class="bg-white/5 hover:bg-white/10 p-8 rounded-3xl cursor-pointer card-hover">
+                        <i class="fa-solid fa-trophy text-4xl mb-6 text-[#00a650]"></i>
+                        <h3 class="text-2xl font-semibold mb-3">Participações</h3>
+                        <p class="text-white/70">9 Copas do Mundo. 1966: 3º lugar com Eusébio. 2006: 4º lugar. E agora 2026: rumo ao título!</p>
+                    </div>
+                    <div class="bg-white/5 hover:bg-white/10 p-8 rounded-3xl cursor-pointer card-hover">
+                        <i class="fa-solid fa-users text-4xl mb-6 text-[#da291c]"></i>
+                        <h3 class="text-2xl font-semibold mb-3">A Equipe</h3>
+                        <p class="text-white/70">Lendas do passado e estrelas do presente. Ronaldo, Bruno Fernandes, Leão e os novos talentos que vão fazer história.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRINCIPAIS JOGADORES DA HISTÓRIA -->
+            <div class="max-w-screen-2xl mx-auto px-8 pb-16">
+                <h2 class="text-5xl font-bold title-font mb-4">Lendas da História</h2>
+                <p class="text-white/60 mb-10 max-w-xl">Heróis que eternizaram a Seleção nas Copas do Mundo</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="historical-players">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+
+            <!-- MELHORES PORTUGUESES DA ATUALIDADE -->
+            <div class="bg-neutral-900 py-16">
+                <div class="max-w-screen-2xl mx-auto px-8">
+                    <h2 class="text-5xl font-bold title-font mb-4">Estrelas da Atualidade (2026)</h2>
+                    <p class="text-white/60 mb-10 max-w-xl">O time que vai brilhar em Miami</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-6" id="current-players">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================== PÁGINA 2: CULTURA ====================== -->
+        <div id="page-cultura" class="page">
+            <div class="max-w-screen-2xl mx-auto px-8 pt-12">
+                <div class="flex items-center gap-x-4 mb-8">
+                    <span class="text-6xl"></span>
+                    <h1 class="title-font text-6xl font-bold">Cultura Portuguesa nas Copas e Além</h1>
+                </div>
+                
+                <div class="prose prose-invert max-w-none">
+                    <h3 class="text-3xl font-semibold mb-6">1. A Cultura do Povo nas Copas do Mundo</h3>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <p class="text-xl leading-relaxed mb-8">Nas Copas, o português transforma-se em uma onda verde-vermelha. O hino "A Portuguesa" ecoa em estádios do mundo inteiro. Bandeiras enormes, lenços, fogos de artifício e o grito uníssono "VAMOS PORTUGAL!" são marcas registradas da nossa torcida.</p>
+                            <p class="text-xl leading-relaxed">A paixão é visceral: famílias inteiras se reúnem em cafés de Lisboa, Porto e Coimbra. Nas ruas de Miami durante a Copa 2026, a "colónia portuguesa" vai tomar conta. É mais que futebol é identidade nacional.</p>
+                            
+                            <div class="flex gap-4 mt-12">
+                                <div class="bg-white/10 p-6 rounded-3xl flex-1">
+                                    <i class="fa-solid fa-futbol text-4xl text-[#da291c] mb-4"></i>
+                                    <h4 class="font-semibold">Festa nas ruas</h4>
+                                    <p class="text-sm text-white/70">Após cada vitória, Lisboa vira uma grande festa com marchas e fogos.</p>
+                                </div>
+                                <div class="bg-white/10 p-6 rounded-3xl flex-1">
+                                    <i class="fa-solid fa-heart-pulse text-4xl text-[#00a650] mb-4"></i>
+                                    <h4 class="font-semibold">Orgulho quinado</h4>
+                                    <p class="text-sm text-white/70">As quinas do escudo representam os 5 reinos históricos e a nossa garra.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <img src="https://media.gettyimages.com/id/2160202052/photo/portugal-fans-during-the-uefa-euro-2024-quarter-final-match-between-portugal-v-france-at-the.jpg?s=612x612&w=0&k=20&c=TYOCuxlwRxgh3Sxfsadkm5eBaS1EtQgUzJYoug8LfW8=" alt="Torcida portuguesa vibrando na Copa" 
+                             class="w-full rounded-3xl shadow-2xl object-cover">
+                    </div>
+                </div>
+
+                <div class="mt-20">
+                    <h3 class="text-3xl font-semibold mb-8">2. A Cultura Portuguesa em Geral</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-gradient-to-br from-[#00a650]/10 to-transparent p-8 rounded-3xl">
+                            <h4 class="text-2xl mb-4">Fado &amp; Tradição</h4>
+                            <p class="text-white/70">Música da alma portuguesa. Patrimônio da UNESCO. Nas noites de Alfama, o fado conta histórias de saudade e conquistas.</p>
+                            <img src="https://i.pinimg.com/originals/da/1e/4d/da1e4dc3d15eead541d771b1cdaf9186.jpg" alt="Fado português" class="mt-8 rounded-2xl">
+                        </div>
+                        <div class="bg-gradient-to-br from-[#da291c]/10 to-transparent p-8 rounded-3xl">
+                            <h4 class="text-2xl mb-4">Gastronomia &amp; Vinhos</h4>
+                            <p class="text-white/70">Bacalhau à brás, pastéis de nata, vinho do Porto e azeite. A mesa portuguesa é um banquete de sabores que une gerações.</p>
+                            <img src="https://seletobebidas.com.br/wp-content/uploads/2024/07/10-Melhores-Vinhos-Portugueses-Casal-Garcia-Esporao-e-mais.jpg" alt="Comida portuguesa" class="mt-8 rounded-2xl">
+                        </div>
+                        <div class="bg-gradient-to-br from-amber-400/10 to-transparent p-8 rounded-3xl">
+                            <h4 class="text-2xl mb-4">Descobrimentos &amp; Azulejos</h4>
+                            <p class="text-white/70">A era dos descobrimentos (Vasco da Gama, Henrique o Navegador) e os azulejos coloridos que decoram as cidades.</p>
+                            <img src="https://escolaeducacao.com.br/wp-content/uploads/2018/08/desembarque-de-pedro-alvarez-cabral-768x497.jpg" alt="Azulejos portugueses" class="mt-8 rounded-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================== PÁGINA 3: SEDE ====================== -->
+        <div id="page-sede" class="page">
+            <div class="max-w-screen-2xl mx-auto px-8 pt-12">
+                <h1 class="title-font text-6xl font-bold mb-6 flex items-center gap-x-6">
+                    <span>Sede Oficial em Miami</span>
+                    <span class="text-5xl">🌴</span>
+                </h1>
+                <p class="text-2xl text-white/70 mb-12">Confirmada pela Federação Portuguesa de Futebol: a Seleção fica hospedada em Miami durante toda a Copa 2026.</p>
+                
+                <div class="grid md:grid-cols-12 gap-12">
+                    <!-- Info principal -->
+                    <div class="md:col-span-7">
+                        <div class="bg-white/5 rounded-3xl p-10">
+                            <h3 class="text-3xl mb-6">Onde eles vão ficar?</h3>
+                            <p class="text-xl leading-relaxed">Base de treinamento e hotel de luxo em Miami/South Florida (área de Miami Gardens / Palm Beach Gardens confirmada). O centro de treinamento será próximo ao Hard Rock Stadium, palco de jogos importantes da Copa.</p>
+                            
+                            <div class="mt-10 grid grid-cols-2 gap-8 text-sm">
+                                <div>
+                                    <strong class="block mb-2 text-[#00a650]">Clima em junho/julho 2026</strong>
+                                    <ul class="space-y-3 text-white/70">
+                                        <li class="flex justify-between"><span>Temperatura média:</span> <span class="font-semibold">31°C / 88°F</span></li>
+                                        <li class="flex justify-between"><span>Umidade:</span> <span class="font-semibold">80-90%</span></li>
+                                        <li class="flex justify-between"><span>Chuva:</span> <span class="font-semibold">Temporais à tarde (típico tropical)</span></li>
+                                        <li class="flex justify-between"><span>Índice UV:</span> <span class="font-semibold">Muito alto</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <strong class="block mb-2 text-[#da291c]">Facilidades para a Seleção</strong>
+                                    <ul class="space-y-2 text-white/70">
+                                        <li>✅ Campos de treino de nível FIFA</li>
+                                        <li>✅ Hotel 5 estrelas com piscina e spa</li>
+                                        <li>✅ Centro de recuperação com tecnologia de ponta</li>
+                                        <li>✅ Proximidade com o Hard Rock Stadium (15-20 min)</li>
+                                        <li>✅ Segurança reforçada pela FIFA</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem Miami + infos da cidade -->
+                    <div class="md:col-span-5">
+                        <img src="https://media.gettyimages.com/id/1298590623/photo/miami-skyline-aerial.jpg?s=612x612&w=0&k=20&c=yRtXYfeAx2BD5uUaVlw4IQVSAIvfPcju0z0INIBwdWQ=" alt="Miami skyline com Hard Rock Stadium" 
+                             class="rounded-3xl shadow-2xl w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <h3 class="text-3xl font-semibold mb-8">Sobre Miami: a cidade que recebe a Seleção</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="p-8 bg-gradient-to-br from-blue-500/10 rounded-3xl">
+                            <h4 class="font-semibold text-xl mb-4">Cultura vibrante</h4>
+                            <p class="text-white/70">Little Havana (influência cubana), Wynwood (arte de rua), South Beach (Art Deco). Uma das cidades mais multicultural do mundo.</p>
+                        </div>
+                        <div class="p-8 bg-gradient-to-br from-amber-400/10 rounded-3xl">
+                            <h4 class="font-semibold text-xl mb-4">Praias e lazer</h4>
+                            <p class="text-white/70">South Beach, Miami Beach e Biscayne Bay. Perfeito para recuperação física e mental dos jogadores.</p>
+                        </div>
+                        <div class="p-8 bg-gradient-to-br from-emerald-400/10 rounded-3xl">
+                            <h4 class="font-semibold text-xl mb-4">Noite e gastronomia</h4>
+                            <p class="text-white/70">Restaurantes de todos os cantos do mundo, vida noturna agitada e o famoso "Miami Vice" vibe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================== PÁGINA 4: PARTICIPAÇÕES ====================== -->
+        <div id="page-participacoes" class="page">
+            <div class="max-w-screen-2xl mx-auto px-8 pt-12">
+                <h1 class="title-font text-6xl font-bold mb-8">Retrospecto nas Copas do Mundo</h1>
+                <p class="text-white/60 mb-12 text-xl">9 participações • Melhor resultado: 3º lugar (1966)</p>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-white/10">
+                                <th class="px-6 py-5 text-left">Ano</th>
+                                <th class="px-6 py-5 text-left">Sede</th>
+                                <th class="px-6 py-5 text-left">Fase</th>
+                                <th class="px-6 py-5 text-center">Jogos</th>
+                                <th class="px-6 py-5 text-center">Vitórias</th>
+                                <th class="px-6 py-5 text-center">Empates</th>
+                                <th class="px-6 py-5 text-center">Derrotas</th>
+                                <th class="px-6 py-5 text-center">Gols</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10 text-white/80">
+                            <tr><td class="px-6 py-5">1966</td><td class="px-6 py-5">Inglaterra</td><td class="px-6 py-5 font-semibold text-amber-400">3º LUGAR</td><td class="px-6 py-5 text-center">6</td><td class="px-6 py-5 text-center">5</td><td class="px-6 py-5 text-center">0</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">17-8</td></tr>
+                            <tr><td class="px-6 py-5">1986</td><td class="px-6 py-5">México</td><td class="px-6 py-5">Grupo</td><td class="px-6 py-5 text-center">3</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">0</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">2-4</td></tr>
+                            <tr><td class="px-6 py-5">2002</td><td class="px-6 py-5">Coreia/Japão</td><td class="px-6 py-5">Grupo</td><td class="px-6 py-5 text-center">3</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">0</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">6-4</td></tr>
+                            <tr><td class="px-6 py-5">2006</td><td class="px-6 py-5">Alemanha</td><td class="px-6 py-5 font-semibold text-amber-400">4º LUGAR</td><td class="px-6 py-5 text-center">7</td><td class="px-6 py-5 text-center">4</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">7-5</td></tr>
+                            <tr><td class="px-6 py-5">2010</td><td class="px-6 py-5">África do Sul</td><td class="px-6 py-5">Oitavas</td><td class="px-6 py-5 text-center">4</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">4-3</td></tr>
+                            <tr><td class="px-6 py-5">2014</td><td class="px-6 py-5">Brasil</td><td class="px-6 py-5">Grupo</td><td class="px-6 py-5 text-center">3</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">4-7</td></tr>
+                            <tr><td class="px-6 py-5">2018</td><td class="px-6 py-5">Rússia</td><td class="px-6 py-5">Oitavas</td><td class="px-6 py-5 text-center">4</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">1</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">6-6</td></tr>
+                            <tr><td class="px-6 py-5">2022</td><td class="px-6 py-5">Qatar</td><td class="px-6 py-5">Quartas</td><td class="px-6 py-5 text-center">5</td><td class="px-6 py-5 text-center">3</td><td class="px-6 py-5 text-center">0</td><td class="px-6 py-5 text-center">2</td><td class="px-6 py-5 text-center">12-6</td></tr>
+                            <tr class="bg-emerald-400/10 font-semibold"><td class="px-6 py-5">2026</td><td class="px-6 py-5">EUA/Canadá/México</td><td class="px-6 py-5 text-emerald-400">EM ANDAMENTO</td><td class="px-6 py-5 text-center">—</td><td class="px-6 py-5 text-center">—</td><td class="px-6 py-5 text-center">—</td><td class="px-6 py-5 text-center">—</td><td class="px-6 py-5 text-center">—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-12 bg-white/5 rounded-3xl p-10 text-center">
+                    <p class="text-2xl">Total: <span class="font-bold">35 jogos • 17 vitórias • 6 empates • 12 derrotas • 61 gols marcados</span></p>
+                    <p class="text-emerald-400 mt-6 text-xl">A Copa de 2026 pode ser a nossa maior glória!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER - IGUAL EM TODAS AS PÁGINAS -->
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-white/60 text-xs flex flex-col md:flex-row justify-between items-center gap-y-6">
+            <div class="flex items-center gap-x-8">
+                <p>© 2026 Federação Portuguesa de Futebol • Todos os direitos reservados</p>
+                <a href="#" class="hover:text-white">FIFA.com</a>
+                <a href="#" class="hover:text-white">FPF.pt</a>
+            </div>
+            <div class="flex gap-x-6">
+                <i onclick="window.open('https://x.com/Portugal','_blank')" class="fa-brands fa-x-twitter cursor-pointer hover:text-[#00a650]"></i>
+                <i onclick="window.open('https://instagram.com/selecaoportugal','_blank')" class="fa-brands fa-instagram cursor-pointer hover:text-[#00a650]"></i>
+                <i onclick="window.open('https://youtube.com/fpf','_blank')" class="fa-brands fa-youtube cursor-pointer hover:text-[#00a650]"></i>
+            </div>
+            <p class="text-center md:text-right">Feito com ❤️ por um fã da Seleção • Totalmente interativo e responsivo</p>
+        </div>
+    </footer>
+
+    <!-- MODAL PARA JOGADORES -->
+    <div id="player-modal" onclick="if(event.target === this) hideModal()" 
+         class="hidden fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal bg-neutral-900 max-w-2xl w-full mx-4 rounded-3xl p-10 text-white">
+            <div id="modal-content" class="text-center"></div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script init
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        theme: {
+                            extend: {},
+                        },
+                    }
+                },
+                theme(userConfig = {}) {
+                    return {
+                        ...this.defaultTheme(),
+                        ...userConfig,
+                    }
+                },
+                defaultTheme() {
+                    return {
+                        extend: {
+                            colors: {
+                                green: '#00a650',
+                                red: '#da291c'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Navegação entre páginas
+        function navigateTo(page) {
+            // Esconde todas as páginas
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+            
+            // Mostra a página desejada
+            const target = document.getElementById(`page-${page}`)
+            if (target) target.classList.add('active')
+            
+            // Atualiza botões ativos
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'bg-white/10'))
+            const activeBtn = document.getElementById(`btn-${page}`)
+            if (activeBtn) activeBtn.classList.add('active', 'bg-white/10')
+            
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+        
+        // Dados dos jogadores
+        const historicalPlayers = [
+            {
+                name: "Eusébio",
+                nickname: "Pantera Negra",
+                year: "1966",
+                achievement: "9 gols na Copa",
+                img: "https://media.gettyimages.com/id/2242600481/photo/portuguese-footballer-eusebio-stands-on-the-pitch-prior-to-playing-as-a-striker-for-benfica.jpg?s=612x612&w=0&k=20&c=g7GS8JVhy6O9Gl38NuaPy4f7zKDQWMslMfTAWxh5v14=",
+                desc: "Maior artilheiro da história das Copas até hoje com 9 gols em 1966. Ballon d'Or e lenda eterna."
+            },
+            {
+                name: "Luís Figo",
+                nickname: "O Galáctico",
+                year: "2002-2006",
+                achievement: "Capitão da Geração de Ouro",
+                img: "https://assets-sports.asharq.com/images/articles/864x488/16-9/KhIqyWoNlW_1761324071.webp",
+                desc: "Ballon d'Or 2000. Um dos melhores alas da história do futebol mundial."
+            },
+            {
+                name: "Cristiano Ronaldo",
+                nickname: "CR7",
+                year: "2006-2026",
+                achievement: "Recordista de jogos e gols",
+                img: "https://media.gettyimages.com/id/2156574622/photo/aveiro-portugal-cristiano-ronaldo-of-portugal-celebrates-his-goal-during-the-international.jpg?s=612x612&w=0&k=20&c=dbqiPoJ8NSyVynF7TycYr4oAN1yOQyKRhWctIT61Mps=",
+                desc: "O maior de todos. 5 Ballons d'Or. Ainda brilha em 2026 aos 41 anos."
+            },
+            {
+                name: "Pauleta",
+                nickname: "O Predador",
+                year: "2002-2006",
+                achievement: "Melhor artilheiro da Seleção até CR7",
+                img: "https://media.gettyimages.com/id/51030786/photo/lisbon-portugal-despair-for-pauleta-of-portugal-following-the-uefa-euro-2004-final-match.jpg?s=612x612&w=0&k=20&c=8hwyo47ibMYasJwYZ4fUt2gyOufHXeuJE6QbL-7QZ40=",
+                desc: "47 gols pela Seleção. Ídolo absoluto dos anos 2000."
+            }
+        ]
+        
+        const currentPlayers = [
+            {
+                name: "Bruno Fernandes",
+                position: "Meio-campo",
+                club: "Manchester United",
+                img: "https://media.gettyimages.com/id/2170251406/photo/lisbon-portugal-bruno-fernandes-of-portugal-celebrates-after-scoring-his-teams-first-goal.jpg?s=612x612&w=0&k=20&c=KHrwlztX1NVcAVr3xc56EooM8CQp_eQRCAtiYr8-AyA=",
+                desc: "Coração da equipe. Criatividade e liderança."
+            },
+            {
+                name: "Rafael Leão",
+                position: "Atacante",
+                club: "Milan",
+                img: "https://media.gettyimages.com/id/1444220249/photo/doha-qatar-rafael-leao-of-portugal-celebrates-after-scoring-their-teams-third-goal-during-the.jpg?s=612x612&w=0&k=20&c=dslvjU5VSuEVqSnKuHX19lY6sRE3Pw48-niH21ONKtY=",
+                desc: "Velocidade e drible mortal. O X-Factor."
+            },
+            {
+                name: "Rúben Dias",
+                position: "Zagueiro",
+                club: "Manchester City",
+                img: "https://media.gettyimages.com/id/2217991433/photo/munich-germany-r%C3%BAben-dias-of-portugal-gestures-during-the-uefa-nations-league-2025-semifinal.jpg?s=612x612&w=0&k=20&c=aKabWsfMymr-LVWjzS4VqinhuWm6LUsIGl5Ejm564Wk=",
+                desc: "Muro defensivo. Capitão da linha de fundo."
+            },
+            {
+                name: "Vitinha",
+                position: "Meio-campo",
+                club: "PSG",
+                img: "https://media.gettyimages.com/id/2219217712/photo/munich-germany-vitinha-of-portugal-poses-for-a-photograph-with-the-uefa-nations-league-trophy.jpg?s=612x612&w=0&k=20&c=l6XEFaam6SM4CvMmuPvD28JpVhvUEP4Jqsmp26-qlaM=",
+                desc: "Controle de bola e visão de jogo impecáveis."
+            },
+            {
+                name: "Cristiano Ronaldo",
+                position: "Atacante",
+                club: "Al-Nassr / Seleção",
+                img: "https://media.gettyimages.com/id/1154848343/photo/porto-portugal-cristiano-ronaldo-of-portugal-celebrates-with-the-uefa-nations-league-trophy.jpg?s=612x612&w=0&k=20&c=Y_JnevASvkEmRppZfwtlt1q6-ERM1fbGhZ7e7x9KDZ0=",
+                desc: "Ainda o Rei. Última Copa?"
+            }
+        ]
+        
+        // Renderiza jogadores históricos
+        function renderHistoricalPlayers() {
+            const container = document.getElementById('historical-players')
+            historicalPlayers.forEach(player => {
+                const card = document.createElement('div')
+                card.className = 'bg-white/5 rounded-3xl overflow-hidden cursor-pointer card-hover'
+                card.innerHTML = `
+                    <img src="${player.img}" alt="${player.name}" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="text-2xl font-semibold">${player.name}</h4>
+                            <span class="text-xs bg-white/10 px-3 py-1 rounded-full">${player.year}</span>
+                        </div>
+                        <p class="text-[#00a650] text-sm mb-2">${player.nickname}</p>
+                        <p class="text-sm text-white/70 mb-4">${player.achievement}</p>
+                        <button onclick="showPlayerModal('${player.name}')" 
+                                class="text-xs uppercase font-medium flex items-center gap-x-2 text-white/70 hover:text-white">
+                            Saiba mais <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `
+                container.appendChild(card)
+            })
+        }
+        
+        // Renderiza jogadores atuais
+        function renderCurrentPlayers() {
+            const container = document.getElementById('current-players')
+            currentPlayers.forEach(player => {
+                const card = document.createElement('div')
+                card.className = 'bg-white/5 rounded-3xl overflow-hidden cursor-pointer card-hover flex flex-col'
+                card.innerHTML = `
+                    <img src="${player.img}" alt="${player.name}" class="w-full h-52 object-cover">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-xl font-semibold">${player.name}</h4>
+                        <p class="text-[#da291c]">${player.position} • ${player.club}</p>
+                        <p class="text-xs mt-auto pt-6 text-white/60">${player.desc}</p>
+                    </div>
+                `
+                container.appendChild(card)
+            })
+        }
+        
+        // Modal de jogador
+        function showPlayerModal(name) {
+            const modal = document.getElementById('player-modal')
+            const content = document.getElementById('modal-content')
+            
+            let playerData = {}
+            
+            if (name === "Eusébio") playerData = historicalPlayers[0]
+            else if (name === "Luís Figo") playerData = historicalPlayers[1]
+            else if (name === "Cristiano Ronaldo") playerData = historicalPlayers[2]
+            else if (name === "Pauleta") playerData = historicalPlayers[3]
+            
+            content.innerHTML = `
+                <button onclick="hideModal()" class="absolute top-6 right-6 text-3xl text-white/40 hover:text-white">✕</button>
+                <img src="${playerData.img}" alt="${playerData.name}" class="mx-auto w-40 h-40 rounded-3xl object-cover mb-8 shadow-2xl">
+                <h2 class="text-4xl font-bold title-font">${playerData.name}</h2>
+                <p class="text-[#00a650]">${playerData.nickname}</p>
+                <p class="mt-6 leading-relaxed text-white/80">${playerData.desc}</p>
+                <div class="mt-10 flex justify-center gap-x-8 text-sm">
+                    <div class="text-center">
+                    </div>
+                    <div class="text-center">
+                        
+                    </div>
+                </div>
+                <button onclick="hideModal()" class="mt-12 w-full py-5 bg-white text-black font-semibold rounded-3xl">FECHAR</button>
+            `
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+        }
+        
+        function hideModal() {
+            const modal = document.getElementById('player-modal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        // Inicialização completa
+        window.onload = function() {
+            initializeTailwind()
+            renderHistoricalPlayers()
+            renderCurrentPlayers()
+            
+            console.log('%c✅ Site da Seleção Portuguesa carregado com sucesso! Totalmente interativo, responsivo e com vídeo de fundo.', 'color:#00a650; font-size:13px')
+            
+            // Easter egg: pressione "P" para ver um destaque extra
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'p' || e.key === 'P') {
+                    alert('🎉 Destaque: A Seleção Portuguesa é a única equipe europeia que nunca perdeu uma partida de abertura em Copas desde 2002!')
+                }
+            })
+        }
+    </script>
+</body>
+</html>
+```
